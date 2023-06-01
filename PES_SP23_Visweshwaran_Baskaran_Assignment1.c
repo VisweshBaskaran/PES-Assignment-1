@@ -144,8 +144,6 @@ uint32_t multiply(uint32_t x, int y) //Function to compute product of 2 numbers 
    else if(y > 0 ) return (x + multiply(x, y-1)); //adds x to x by y times to achieve x*y;
   /* the case where y is negative */
     return (-multiply(x, -y)); 
-   //else if(y < 0 ) return (-multiply(x, -y));
-   //return 0;
 }
 /*
 int int_to_binstr(char *str, size_t size, int32_t num, uint8_t nbits)
@@ -205,7 +203,6 @@ int int_to_binstr(char *str, size_t size, int32_t num, uint8_t nbits)
     else
     {
         str = ""; //when nbit is not valid, str is set to be empty and -1 is returned
-        //printf("nbits not in range"); 
         return 0xFFFFFFFF;
     }
     //To check if nbits is large enough to hold num, we can simply check whether num lies between the maxvalue and minvalue of signed 'nbits' bit int
@@ -255,7 +252,6 @@ int int_to_binstr(char *str, size_t size, int32_t num, uint8_t nbits)
                 str[i] = '0'; 
             }
             str[(nbits+2)] = '\0';  //adding null character at the end;
-            //printf("final string: %s\n",str);
             size = nbits+2;
             return (size);
         }
@@ -266,10 +262,7 @@ int int_to_binstr(char *str, size_t size, int32_t num, uint8_t nbits)
             int32_t newnum = pow2(nbits) + num;
             while(newnum>0)
             {
-                //temp = modulus2(newnum);
                 rem = newnum & 1; //obtaining remainder when divided by 2, by extracting 0th bit
-                //printf("%d\n",temp);
-                //printf("%d current nbits_copy\n", nbits_copy);
                 //assigning 1 or 0 to string based on reminder from LSB towards MSB till num > 0
                 if(rem == 1)
                 {
@@ -284,15 +277,12 @@ int int_to_binstr(char *str, size_t size, int32_t num, uint8_t nbits)
                 nbits_copy--;
                 newnum = newnum >> 1;
             }
-            //printf(" nbits_copy value before for %d",nbits_copy);
             //Loop to add '0' to str from current index to 2nd index
             for(int i= nbits_copy; i>=2; i--)
             {
-                //printf("current nbits_copy %d",i);
                 str[i] = '0';
             }
             str[(nbits+2)] = '\0'; //adding null character at the end;
-            //printf("final string: %s\n",str);
             return (nbits+2);
         }
     }
@@ -358,7 +348,6 @@ uint32_t hexstr_to_uint(const char *str){
                 
                 return 0xFFFFFFFF; //return -1 when length has invalid value
             else
-                //printf("okay\n")
                 ; //do nothing
         }
     }
@@ -374,7 +363,6 @@ uint32_t hexstr_to_uint(const char *str){
         //Based on the character in str[i], its corresponding numerical value is used to increment result variable according to place value in base 16
         switch(str[i])
         {   case '0':
-            //uint = uint + multiply((pow16(exponent)), 0);
             break;
             
             case '1':
@@ -620,7 +608,6 @@ uint32_t twiggle_except_bit(uint32_t input, int bit, operation_t operation){
     }
     else if(operation == SET)
     {
-        //printf("0x%08x\n",mask);
          /*since we need to set all the bits except bit in consideration, 
          we use a mask which contains all the bits to be 0 except the required position which is 1,
          therefore doing 'bitwise or' of the ~input and mask gets us the desired result  */
